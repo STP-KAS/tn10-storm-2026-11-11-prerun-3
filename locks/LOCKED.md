@@ -137,3 +137,10 @@ These lines are baked into this repo's own pastes. They come from pre-run 2's wo
 ## Locked during pre-run 3
 
 Nothing yet. When a fix works, append it here, one block per fix, in the form shown above: UTC time, what failed, what was changed, why that change stays.
+
+```
+- 2026-11-11T15:40:21Z.
+- What failed: the desk runner stopped with "readSub is not defined" on the first scored HOLD-1 minute and wrote logs/FAILED.md. The genesis, family-start, and submit-log reader section sat inside a { ... } block in an ES module, so readSub, landed, and subRows were not in scope for the scoring code. The dry start before the run only reached the gate check.
+- What was changed: nothing in this repo's run. The next repo's runner has that block removed, passes a no-undef lint, and has passed an offline rehearsal on the desk through HOLD-1 scoring and a count-file render before its live run.
+- Why that change stays: a runner is rehearsed offline through HOLD-1 scoring, with faked submit and payment logs and no live send, before any live run. A dry start that only reaches the gate check is not a rehearsal.
+```
